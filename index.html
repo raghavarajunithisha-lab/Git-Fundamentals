@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git & GitHub Mastery - The Complete Interactive Guide</title>
+  <meta name="description"
+    content="Master Git and GitHub from zero to hero. Interactive exercises, real-world scenarios, and best practices for version control mastery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ======= SPLASH / LANDING ======= -->
+  <section id="landing" class="landing">
+    <div class="landing-bg">
+      <div class="grid-lines"></div>
+      <div class="floating-icons">
+        <span class="float-icon" style="--delay:0s;--x:10%;--y:20%">⎇</span>
+        <span class="float-icon" style="--delay:1.2s;--x:80%;--y:15%">⟳</span>
+        <span class="float-icon" style="--delay:0.6s;--x:25%;--y:70%">⊕</span>
+        <span class="float-icon" style="--delay:1.8s;--x:70%;--y:65%">⇄</span>
+        <span class="float-icon" style="--delay:0.3s;--x:50%;--y:85%">�-�</span>
+        <span class="float-icon" style="--delay:2.1s;--x:90%;--y:45%">⊙</span>
+        <span class="float-icon" style="--delay:1.5s;--x:15%;--y:45%">⟐</span>
+      </div>
+    </div>
+    <div class="landing-content">
+      <div class="landing-badge">🚀 100% FREE · INTERACTIVE · NO SIGNUP</div>
+      <h1 class="landing-title">
+        <span class="gradient-text">Git &amp; GitHub</span><br />
+        <span class="title-sub">Complete Mastery</span>
+      </h1>
+      <p class="landing-desc">
+        From your first <code>git init</code> to managing enterprise organizations -
+        learn <strong>everything</strong> through stories, interactive exercises, and real-world scenarios.
+        Not just <em>what</em> to do, but <strong>why</strong> it matters.
+      </p>
+      <div class="landing-stats">
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Modules</span></div>
+        <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Chapters</span></div>
+        <div class="stat"><span class="stat-num">100+</span><span class="stat-label">Exercises</span></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Knowledge</span></div>
+      </div>
+      <button id="startBtn" class="btn-primary btn-large" onclick="startLearning()">
+        <span>Start Your Journey</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="landing-modules-preview">
+        <div class="preview-pill" data-module="1">🔧 Git Fundamentals</div>
+        <div class="preview-pill" data-module="2">🐙 GitHub Core</div>
+        <div class="preview-pill" data-module="3">🚀 DevOps Platform</div>
+        <div class="preview-pill" data-module="4">🏛️ Admin & Governance</div>
+        <div class="preview-pill" data-module="5">🌐 Community & Social</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= MAIN APP ======= -->
+  <div id="app" class="app hidden">
+    <!-- Top Navigation Bar -->
+    <nav id="topNav" class="top-nav">
+      <div class="nav-left">
+        <button class="nav-logo" onclick="showLanding()">
+          <span class="logo-icon">⎇</span>
+          <span class="logo-text">GitMastery</span>
+        </button>
+      </div>
+      <div class="nav-center">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="globalProgress" style="width:0%"></div>
+          <span class="progress-text" id="progressText">0% Complete</span>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button class="nav-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <button class="nav-btn" onclick="resetProgress()" title="Reset Progress">🔄</button>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h3>📚 Curriculum</h3>
+        <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+      </div>
+      <div id="sidebarContent" class="sidebar-content">
+        <!-- Dynamically populated -->
+      </div>
+    </aside>
+
+    <!-- Sidebar Toggle (mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- Main Content Area -->
+    <main id="mainContent" class="main-content">
+      <!-- Module Overview (shown when a module is selected) -->
+      <div id="moduleOverview" class="module-overview hidden">
+        <!-- Dynamically populated -->
+      </div>
+
+      <!-- Chapter Content (shown when a chapter is selected) -->
+      <div id="chapterContent" class="chapter-content hidden">
+        <!-- Dynamically populated -->
+      </div>
+
+      <!-- Dashboard (default view) -->
+      <div id="dashboard" class="dashboard">
+        <div class="dashboard-header">
+          <h1>Your Learning Dashboard</h1>
+          <p>Pick a module to begin your journey. Each builds on the last, but feel free to explore!</p>
+        </div>
+        <div class="modules-grid" id="modulesGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Interactive Terminal Overlay -->
+    <div id="terminalOverlay" class="terminal-overlay hidden">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title" id="terminalTitle">Interactive Terminal</span>
+          <button class="terminal-close" onclick="closeTerminal()">✕</button>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="terminal-output" id="terminalOutput"></div>
+          <div class="terminal-input-line">
+            <span class="terminal-prompt">$</span>
+            <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false"
+              placeholder="Type a git command..." />
+          </div>
+        </div>
+        <div class="terminal-hint" id="terminalHint"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Overlay -->
+    <div id="quizOverlay" class="quiz-overlay hidden">
+      <div class="quiz-window">
+        <div class="quiz-header">
+          <h3 id="quizTitle">Knowledge Check</h3>
+          <button class="quiz-close" onclick="closeQuiz()">✕</button>
+        </div>
+        <div class="quiz-body" id="quizBody">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+  </div>
+
+  <script src="modules.js"></script>
+  <script src="content-m1a.js"></script>
+  <script src="content-m1b.js"></script>
+  <script src="content-m2.js"></script>
+  <script src="content-m345.js"></script>
+  <script src="quizzes.js"></script>
+  <script src="terminal-exercises.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
