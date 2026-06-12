@@ -1,4 +1,32 @@
 const CHAPTER_CONTENT = {};
+
+CHAPTER_CONTENT["1.0"] = `
+<div class="content-block">
+<h2>👋 Welcome to Git Fundamentals!</h2>
+<p>This is an <strong>interactive, story-driven guide</strong> designed to teach you version control using simple, real-world analogies. No boring textbooks, no memorizing commands by heart.</p>
+<p>We believe the best way to learn Git is by <strong>understanding why each command exists</strong>, not by cramming syntax. Every chapter uses everyday examples, like saving game progress, packing a school backpack, or collaborating on a group project, to make complex ideas click naturally.</p>
+</div>
+
+<div class="content-block">
+<h2>🎯 Who is this for?</h2>
+<ul>
+  <li><strong>Complete Beginners:</strong> You've never heard of Git and want to learn the basics from zero. No prior knowledge needed.</li>
+  <li><strong>Confused Learners:</strong> You've seen Git commands before but never understood <em>why</em> there are so many or what each one actually does. This guide will finally make it all make sense.</li>
+</ul>
+</div>
+
+<div class="content-block">
+<h2>📖 How to Use This Guide</h2>
+<ul>
+  <li>📚 <strong>Read each chapter in order</strong>. They build on each other like levels in a game.</li>
+  <li>💻 <strong>Try every command</strong>. Open your terminal and follow along. Reading alone won't make it stick.</li>
+  <li>✅ <strong>Mark chapters complete</strong>. Track your progress as you go.</li>
+  <li>🔁 <strong>Come back anytime</strong>. Use this as a reference whenever you forget a command.</li>
+</ul>
+<p>Ready? Let's jump into <strong>Chapter 1.1</strong> and discover why version control exists! 🚀</p>
+</div>
+`;
+
 CHAPTER_CONTENT["1.1"] = `
 <div class="content-block">
 <h2>🎬 The Story: Why Version Control Exists</h2>
@@ -571,7 +599,7 @@ nothing added to commit but untracked files present (use "git add" to track)</sp
 
 <div class="callout story">
 <div class="callout-title">🎒 Metaphor: Staging Area (The Backpack)</div>
-<p>When you're ready to go to school, you select specific notebooks from your desk and put them in your **Backpack (Staging Area)**. They aren't zipped up yet—you can still add more or take them out—but they are organized and ready to go.</p>
+<p>When you're ready to go to school, you select specific notebooks from your desk and put them in your **Backpack (Staging Area)**. They aren't zipped up yet. You can still add more or take them out, but they are organized and ready to go.</p>
 </div>
 
 <p><strong>👉 Run this command to stage your new file:</strong></p>
@@ -921,7 +949,7 @@ origin  https://github.com/YOUR-USERNAME/first-clone-demo.git (push)</span></pre
 
 <div class="content-block">
 <h2>🤔 Why Does Git Keep Save and Push Separate?</h2>
-<p>Why can't we just have one "Save to GitHub" button? Because Git is **Distributed**. It was designed so developers could work anywhere—even on an airplane with no Wi-Fi!</p>
+<p>Why can't we just have one "Save to GitHub" button? Because Git is **Distributed**. It was designed so developers could work anywhere, even on an airplane with no Wi-Fi!</p>
 <ul>
   <li>If saves went straight to GitHub, you couldn't write code or save history offline.</li>
   <li>You can make 20 small commits over a weekend, structure them cleanly, and then push them all to GitHub in one go when you're finished.</li>

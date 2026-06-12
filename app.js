@@ -8,7 +8,7 @@ let isDark = localStorage.getItem('gitmastery_theme') !== 'light';
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme();
   buildSidebar();
-  renderDashboard();
+  openChapter('1.0');
   updateProgress();
 });
 
@@ -30,47 +30,31 @@ function startLearning() {
   document.getElementById('app').classList.remove('hidden');
 }
 function showLanding() {
-  document.getElementById('landing').classList.remove('hidden');
-  document.getElementById('app').classList.add('hidden');
-  currentModule = null;
-  currentChapter = null;
+  openChapter(currentChapter ? currentChapter.id : '1.0');
 }
 
 // ===== SIDEBAR =====
 function buildSidebar() {
   const container = document.getElementById('sidebarContent');
   container.innerHTML = '';
-  MODULES.forEach(mod => {
-    const div = document.createElement('div');
-    div.className = 'sidebar-module';
-    div.innerHTML = `
-      <button class="sidebar-module-btn" data-mod="${mod.id}" onclick="toggleModuleInSidebar(${mod.id})">
-        <span class="mod-icon">${mod.icon}</span>
-        <span>${mod.title}</span>
-        <span class="mod-arrow">▶</span>
-      </button>
-      <div class="sidebar-chapters" id="sidebarChapters${mod.id}">
-        ${mod.chapters.map(ch => `
-          <button class="sidebar-chapter-btn ${completedChapters.includes(ch.id)?'completed':''}" data-ch="${ch.id}" onclick="openChapter('${ch.id}')">
-            <span class="ch-check">${completedChapters.includes(ch.id)?'✅':'�-�'}</span>
-            <span>${ch.title}</span>
-          </button>
-        `).join('')}
-      </div>`;
-    container.appendChild(div);
-  });
+  const mod = MODULES[0];
+  if (!mod) return;
+  const div = document.createElement('div');
+  div.className = 'sidebar-chapters open';
+  div.id = `sidebarChapters${mod.id}`;
+  div.innerHTML = mod.chapters.map(ch => `
+    <button class="sidebar-chapter-btn ${completedChapters.includes(ch.id)?'completed':''}" data-ch="${ch.id}" onclick="openChapter('${ch.id}')">
+      <span class="ch-check">${completedChapters.includes(ch.id)?'✅':'☐'}</span>
+      <span>${ch.title}</span>
+    </button>
+  `).join('');
+  container.appendChild(div);
 }
 
 function toggleModuleInSidebar(modId) {
   const chapters = document.getElementById('sidebarChapters' + modId);
-  const btn = document.querySelector(`.sidebar-module-btn[data-mod="${modId}"]`);
-  const isOpen = chapters.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.sidebar-chapters').forEach(el => el.classList.remove('open'));
-  document.querySelectorAll('.sidebar-module-btn').forEach(el => el.classList.remove('expanded'));
-  if (!isOpen) {
+  if (chapters) {
     chapters.classList.add('open');
-    btn.classList.add('expanded');
   }
 }
 
@@ -101,13 +85,7 @@ function renderDashboard() {
 }
 
 function showDashboard() {
-  document.getElementById('dashboard').classList.remove('hidden');
-  document.getElementById('moduleOverview').classList.add('hidden');
-  document.getElementById('chapterContent').classList.add('hidden');
-  currentModule = null;
-  currentChapter = null;
-  renderDashboard();
-  updateProgress();
+  openChapter(currentChapter ? currentChapter.id : '1.0');
 }
 
 // ===== MODULE OVERVIEW =====
@@ -167,13 +145,6 @@ function openChapter(chId) {
   const chapterHTML = CHAPTER_CONTENT[chId] || `<div class="content-block"><p>Content for this chapter is coming soon! Check back later.</p></div>`;
 
   content.innerHTML = `
-    <div class="chapter-breadcrumb">
-      <a href="#" onclick="showDashboard();return false">Home</a>
-      <span class="sep">›</span>
-      <a href="#" onclick="openModule(${mod.id});return false">${mod.icon} ${mod.title}</a>
-      <span class="sep">›</span>
-      <span>${ch.title}</span>
-    </div>
     <div class="chapter-title-section">
       <h1>Chapter ${chId}: ${ch.title}</h1>
       <p class="chapter-subtitle">${ch.desc}</p>

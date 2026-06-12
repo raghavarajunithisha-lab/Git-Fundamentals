@@ -17,7 +17,7 @@
 
 <body>
   <!-- ======= SPLASH / LANDING ======= -->
-  <section id="landing" class="landing">
+  <section id="landing" class="landing hidden">
     <div class="landing-bg">
       <div class="grid-lines"></div>
       <div class="floating-icons">
@@ -64,11 +64,12 @@
   </section>
 
   <!-- ======= MAIN APP ======= -->
-  <div id="app" class="app hidden">
+  <div id="app" class="app">
     <!-- Top Navigation Bar -->
     <nav id="topNav" class="top-nav">
       <div class="nav-left">
-        <button class="nav-logo" onclick="showLanding()">
+        <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+        <button class="nav-logo" onclick="openChapter('1.1')">
           <span class="logo-icon">⎇</span>
           <span class="logo-text">GitMastery</span>
         </button>
@@ -90,7 +91,6 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
-        <h3>📚 Curriculum</h3>
         <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
       </div>
       <div id="sidebarContent" class="sidebar-content">
@@ -98,8 +98,7 @@
       </div>
     </aside>
 
-    <!-- Sidebar Toggle (mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
 
     <!-- Main Content Area -->
     <main id="mainContent" class="main-content">

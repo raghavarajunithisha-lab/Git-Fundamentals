@@ -371,7 +371,7 @@ CHAPTER_CONTENT["1.9"] = `
 <p>Now that our basic calculator code is complete and working, it is the perfect time to label it! This is where <strong>Tags</strong> come in.</p>
 
 <h3>🏷️ What is a Tag?</h3>
-<p>Timelines (branches) keep moving forward as you add new commits. But sometimes you want to mark a specific point in time—like version 1.0.0 of your app—so you can easily jump back to it later without looking up a confusing 40-character commit ID.</p>
+<p>Timelines (branches) keep moving forward as you add new commits. But sometimes you want to mark a specific point in time, like version 1.0.0 of your app, so you can easily jump back to it later without looking up a confusing 40-character commit ID.</p>
 <p>A **Tag** is an unchanging milestone. It is like carving a signpost into stone. Once you attach a tag to a commit, it stays pointing to that exact commit forever, even as the branch moves forward.</p>
 
 <div class="callout story">
